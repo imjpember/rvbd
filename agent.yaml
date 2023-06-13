@@ -1,0 +1,32 @@
+apiVersion: apmagent.rvbdapm/v1alpha1
+kind: ApmAgent
+metadata:
+  name: apmagent-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/aternity-apm-agent/values.yaml
+  agent:
+    containerMetricsEnabled: false
+    defaultAppConfig: null
+    logicalServerTag: null
+    maxInstrumentationLogs: 500
+    privileged: false
+  analysisServer:
+    customerId: my-customerid
+    host: my-host
+    port: 443
+  configMap:
+    name: appint-instrumentation-env
+    namespace: default
+  image:
+    pullPolicy: IfNotPresent
+    pullSecrets:
+    - regcred
+    repository: zeus.run/agent/sidecar
+    tag: 12.22.0.534
+  resources:
+    limits:
+      cpu: 1
+      memory: 1G
+    requests:
+      cpu: 300m
+      memory: 1G
